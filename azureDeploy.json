@@ -4,13 +4,10 @@
     "parameters": {
     	"vmSize": {
             "type": "string",
+            "defaultValue": "Standard_D3_v2",
             "allowedValues": [
                 "Standard_D3",
 				"Standard_D3_v2",
-                "Standard_D4", 
-				"Standard_D4_v2",
-				"Standard_D5",
-				"Standard_D5_v2",
                 "Standard_A4"	    
             ],
             "metadata": {
@@ -599,7 +596,7 @@
                         "publisher": "paloaltonetworks",
                         "offer": "vmseries1",
                         "sku": "bundle2",
-                        "version": "8.0.0"
+                        "version": "latest"
                     },
                     "osDisk": {
                         "name": "osdisk",
@@ -670,7 +667,7 @@
                         "publisher": "paloaltonetworks",
                         "offer": "vmseries1",
                         "sku": "bundle2",
-                        "version": "8.0.0"
+                        "version": "latest"
                     },
                     "osDisk": {
                         "name": "osdisk",
@@ -841,6 +838,18 @@
         "firewall 2 management": {
             "type": "String",
             "value": "[reference('IP-FW2-Management').dnsSettings.fqdn]"
-        }
+        }, 
+        "VMseries Firewall-1 URL":{
+            "type": "string",
+            "value":"[concat('https://', reference('IP-FW1-Management').dnsSettings.fqdn)]"
+        },
+        "VMseries Firewall-2 URL":{
+            "type": "string",
+            "value":"[concat('https://', reference('IP-FW2-Management').dnsSettings.fqdn)]"
+        },
+        "WebServerURL":{
+            "type": "string",
+            "value":"[concat('http://',reference('IP-Web1').dnsSettings.fqdn)]"
+      }
     }
 }
